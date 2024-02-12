@@ -23,12 +23,15 @@ export const styles = {
   },
   profile: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     width: "600px",
   },
   userName: {
-    display: "flex",
-    alignItems: "center",
+    lineHeight: "1",
+    margin: "0 10px"
+  },
+  button: {
+    marginLeft: "15px"
   },
   brandContainer: {
     display: "flex",

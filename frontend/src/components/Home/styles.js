@@ -4,12 +4,12 @@ import { deepPurple } from "@mui/material/colors";
 export const styles = {
   appBar: {
     borderRadius: 15,
-    margin: "30px 0",
+    marginTop: theme.spacing(8),
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "10px 50px",
+    padding: "30px 50px",
   },
   heading: {
     color: "rgba(0,183,255, 1)",

@@ -62,15 +62,15 @@ const Login = () => {
     return (
       <div>
         <Container component="main" maxWidth="xs">
-          <Paper sx={styles.paper} elevation={3}>
-            <Avatar sx={styles.avatar}>
+          <Paper style={styles.paper} elevation={3}>
+            <Avatar style={styles.avatar}>
               {" "}
               <LockIcon />
             </Avatar>
             <Typography variant="h5" color="primary">
               {isLoggedIn ? "Login" : "Logout"}
             </Typography>
-            <form sx={styles.form} onSubmit={handleSubmit}>
+            <form style={styles.form} onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 {!isLoggedIn && (
                   <>
@@ -120,7 +120,7 @@ const Login = () => {
               </Grid>
               <Button
                 type="submit"
-                sx={styles.submit}
+                style={styles.submit}
                 fullWidth
                 variant="contained"
                 color="primary"

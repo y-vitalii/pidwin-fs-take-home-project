@@ -16,7 +16,9 @@ const auth = async (req, res, next) => {
     }
 
     next();
-  } catch (error) { }
+  } catch (error) {
+    res.status(500).json({ message: "User is not authorized" });
+  }
 };
 
 export default auth;

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Typography, Toolbar, Avatar, Button } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import * as actionType from "../../constants/actionTypes";
+import { fetchBalance } from "../../actions/balance";
 import { styles } from "./styles";
 
 const Navbar = () => {
+  const balance = useSelector(state => state.balance.amount);
   const [user, setUser] = useState(
     localStorage.getItem("profile")
       ? jwtDecode(JSON.parse(localStorage.getItem("profile")).token)
@@ -33,9 +35,13 @@ const Navbar = () => {
     );
   }, [location]);
 
+  useEffect(() => {
+    if (user !== "null" && user !== null) dispatch(fetchBalance());
+  }, []);
+
   return (
-    <AppBar sx={styles.appBar} position="static" color="inherit">
-      <div sx={styles.brandContainer}>
+    <AppBar style={styles.appBar} position="static" color="inherit">
+      <div style={styles.brandContainer}>
         <Typography
           component={Link}
           to="/"
@@ -46,18 +52,21 @@ const Navbar = () => {
           CoinToss
         </Typography>
       </div>
-      <Toolbar sx={styles.toolbar}>
+      <Toolbar style={styles.toolbar}>
         {user !== "null" && user !== null ? (
-          <div sx={styles.profile}>
+          <div style={styles.profile}>
             <Avatar sx={styles.purple} alt={user.name} src={user.picture}>
               {user.name.charAt(0)}
             </Avatar>
-            <Typography sx={styles.userName} variant="h6">
+            <Typography style={styles.userName} variant="h6">
               {user.name}
+              <Typography style={styles.balance} variant="body2">
+                Balance: ${balance}
+              </Typography>
             </Typography>
             <Button
               variant="contained"
-              sx={styles.logout}
+              style={styles.button}
               color="secondary"
               onClick={logout}
             >
@@ -65,6 +74,7 @@ const Navbar = () => {
             </Button>
             <Button
               variant="contained"
+              style={styles.button}
               color="secondary"
               onClick={() => {
                 history("/password");
